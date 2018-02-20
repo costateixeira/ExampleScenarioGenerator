@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2017/07/03 22:06:53.000.276,=C:\Users\Jose\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/08/15 00:25:16.000.915,=C:\Users\Jose\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/08/16 12:02:12.000.655,=C:\Users\Jose\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/08/18 22:21:37.000.291,=C:\Users\Jose\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/08/22 15:46:51.000.627,=C:\Users\Jose\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/08/22 15:46:57.000.031,=C:\Users\Jose\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/02/07 12:57:46.000.784,=C:\Users\Jose\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/02/08 14:24:07.000.806,=C:\Users\Jose\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/02/08 14:26:28.000.567,=C:\Users\Jose\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/02/08 14:38:45.000.464,C:\Users\Jose\Documents\Embarcadero\Studio\Projects\NewExampleScenarioCreator\Umain.fmx=C:\Users\Jose\Documents\Embarcadero\Studio\Projects\Unit1.fmx</Transaction>
+    <Transaction>2018/02/08 14:38:45.000.464,C:\Users\Jose\Documents\Embarcadero\Studio\Projects\NewExampleScenarioCreator\Umain.pas=C:\Users\Jose\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/02/08 14:39:09.000.004,C:\Users\Jose\Documents\Embarcadero\Studio\Projects\NewExampleScenarioCreator\ScenarioDesktop.dproj=C:\Users\Jose\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2018/02/09 18:45:49.000.128,C:\Users\Jose\Documents\Embarcadero\Studio\Projects\NewExampleScenarioCreator\ScenarioDesktop.dproj=C:\HL7\NewExampleScenarioCreator\ScenarioDesktop.dproj</Transaction>
+    <Transaction>2018/02/09 18:46:07.000.307,C:\Users\Jose\Documents\Embarcadero\Studio\Projects\NewExampleScenarioCreator\Umain.pas=C:\HL7\NewExampleScenarioCreator\Umain.pas</Transaction>
+    <Transaction>2018/02/09 18:46:07.000.307,C:\Users\Jose\Documents\Embarcadero\Studio\Projects\NewExampleScenarioCreator\Umain.fmx=C:\HL7\NewExampleScenarioCreator\Umain.fmx</Transaction>
+  </Transactions>
+</BorlandProject>

@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExampleScenario>
+	<id value="example"/>
+	<name value="Basic Scenario"/>
+	<title value="Barebones Example Scenario"/>
+	<status value="draft"/>
+	<description value="A simple scenario to show demonstrate ExampleScenario."/>
+	<purpose value="Show a simple workflow using a few actors, some activities and operations."/>
+	<actor>
+		<actorId value="physician"/>
+		<type value="person"/>
+		<name value="ER Physician"/>
+		<description value="The ER physician who triggers the procedure"/>
+	</actor>
+	<actor>
+		<actorId value="er_system"/>
+		<type value="entity"/>
+		<name value="ER System"/>
+		<description value="The Emergency Room system"/>
+	</actor>	
+	<actor>
+		<actorId value="or_system"/>
+		<type value="entity"/>
+		<name value="OR System"/>
+		<description value="The Operating Room scheduling system"/>
+	</actor>
+
+	<actor>
+		<actorId value="nurse"/>
+		<type value="person"/>
+		<name value="Nurse"/>
+		<description value="The Operating Room nurse"/>
+	</actor>
+
+	<actor>
+		<actorId value="patient"/>
+		<type value="person"/>
+		<name value="Patient"/>
+		<description value="The Patient"/>
+	</actor>
+
+
+	<instance>
+		<resourceId value="surg_request"/>
+		<resourceType value="ProcedureRequest"/>
+		<name value="Emergency apendectomy"/>
+		<description value="A request for an emergency apendectomy"/>
+	</instance>	
+
+	<instance>
+		<resourceId value="consent_request"/>
+		<resourceType value="Task"/>
+		<name value="Request Consent"/>
+		<description value="Request the patient's informed consent"/>
+	</instance>	
+
+	<instance>
+		<resourceId value="consent"/>
+		<resourceType value="Consent"/>
+		<name value="Consent"/>
+		<description value="Patient's informed consent"/>
+	</instance>	
+
+
+	<instance>
+		<resourceId value="prep_patient"/>
+		<resourceType value="ProcedureRequest"/>
+		<name value="Request Patient preparation"/>
+		<description value="Request to prepare the patient for an apendectomy"/>
+	</instance>	
+
+	<instance>
+		<resourceId value="iv_lock_request"/>
+		<resourceType value="ProcedureRequest"/>
+		<name value="Request IV Lock placement"/>
+		<description value="Request to put an IV lock"/>
+	</instance>	
+
+	<instance>
+		<resourceId value="consent_task"/>
+		<resourceType value="Task"/>
+		<name value="Request Consent"/>
+		<description value="Task to obtain consent"/>
+	</instance>	
+
+
+	<instance>
+		<resourceId value="iv_lock"/>
+		<resourceType value="Procedure"/>
+		<name value="IV Lock placement"/>
+		<description value="IV lock placed"/>
+	</instance>	
+
+
+	<instance>
+		<resourceId value="req_anesthesia"/>
+		<resourceType value="MedicationRequest"/>
+		<name value="Request use of anesthesia"/>
+		<description value="Request use of anesthesia"/>
+	</instance>	
+
+	<instance>
+		<resourceId value="report_anesthesia"/>
+		<resourceType value="MedicationAdministration"/>
+		<name value="Report use of anesthesia"/>
+		<description value="Report use of anesthesia"/>
+	</instance>	
+
+	<instance>
+		<resourceId value="surgery"/>
+		<resourceType value="Procedure"/>
+		<name value="Surgery"/>
+		<description value="The actual surgery report"/>
+	</instance>	
+
+
+
+
+
+
+
+
+	<process>
+		<title value="Emergency Apendectomy"/>
+		<description value="Request, preparation and exeution of surgery"/>
+		<step>
+			<process>
+				<title value="Enter Order"/>
+				<step>
+
+					<operation>
+						<number value="1"/>
+						<name value="Enter Order"/>
+						<initiator value="physician"/>
+						<receiver value="er_system"/>
+						<description value="Order Apendectomy"/>
+					</operation>
+				</step>
+				<step>
+					<operation>
+						<number value="2"/>
+						<name value="Submit Surgery Order"/>
+						<type value="create"/>
+						<initiator value="er_system"/>
+						<receiver value="or_system"/>
+						<description value="send surgery request to OR"/>
+						<request>
+							<resourceId value="surg_request"/>
+						</request>
+					</operation>
+				</step>
+
+			</process>
+		</step>
+		<step>
+			<process>
+				<title value="Assess surgery"/>
+				<step>
+					<operation>
+						<number value="3"/>
+						<name value="Derive actions for surgery"/>
+						<type value="create"/>
+						<initiator value="or_system"/>
+						<receiver value="or_system"/>
+						<description value="decompose procedure into tasks"/>
+						<request>
+							<resourceId value="consent_task"/>
+						</request>			
+						<request>
+							<resourceId value="iv_lock_request"/>
+						</request>			
+					</operation>
+				</step>
+
+				<step>
+					<operation>
+						<number value="3"/>
+						<name value="show consent is needed"/>
+						<initiator value="or_system"/>
+						<receiver value="nurse"/>
+						<description value="request consent from patient"/>
+					</operation>
+
+				</step>
+			</process>
+
+		</step>
+		<step>
+			<operation>
+				<number value="3"/>
+				<name value="IV Lock is needed"/>
+				<initiator value="or_system"/>
+				<receiver value="or_system"/>
+				<type value="create"/>
+				<description value="IV Lock request"/>
+				<request>
+					<resourceId value="iv_lock_request"/>
+				</request>			
+			</operation>
+
+
+
+		</step>
+		<step>
+			<process>
+				<title value="Consent"/>
+		<step>
+			<operation>
+				<number value="3"/>
+				<name value="request consent"/>
+				<initiator value="nurse"/>
+				<receiver value="patient"/>
+				<description value="request consent from patient"/>
+			</operation>
+
+			<operation>
+				<number value="3"/>
+				<name value="grant consent"/>
+				<initiator value="patient"/>
+				<receiver value="nurse"/>
+				<description value="give consent"/>
+
+			</operation>
+
+			<operation>
+				<number value="3"/>
+				<name value="record consent"/>
+				<initiator value="nurse"/>
+				<receiver value="or_system"/>
+				<type value="create"/>
+				<description value="record consent"/>
+				<request>
+					<resourceId value="consent"/>
+				</request>			
+			</operation>
+		</step>
+			</process>
+		</step>
+		<step>
+
+
+			<operation>
+				<number value="3"/>
+				<name value="Patient Preparation plan"/>
+				<initiator value="or_system"/>
+				<receiver value="or_system"/>
+				<type value="create"/>
+				<description value="Patient Preparation"/>
+				<request>
+					<resourceId value="prep_patient"/>
+				</request>			
+			</operation>
+
+
+			<operation>
+				<number value="3"/>
+				<name value="IV Lock request"/>
+				<initiator value="or_system"/>
+				<receiver value="nurse"/>
+				<type value="create"/>
+				<description value="IV Lock request"/>
+				<request>
+					<resourceId value="req_anesthesia"/>
+				</request>			
+			</operation>
+
+
+
+			<operation>
+				<number value="3"/>
+				<name value="Place IV Lock"/>
+				<initiator value="nurse"/>
+				<receiver value="patient"/>
+				<description value="Place IV Lock"/>
+			</operation>
+
+			<operation>
+				<number value="3"/>
+				<name value="Register IV Lock placement"/>
+				<initiator value="nurse"/>
+				<receiver value="or_system"/>
+				<type value="create"/>
+				<description value="Report IV Lock"/>
+				<request>
+					<resourceId value="iv_lock"/>
+				</request>			
+			</operation>
+
+		</step>
+		<step>
+			<pause value="true" />
+		</step>
+		<step>
+
+			<operation>
+				<number value="3"/>
+				<name value="Report Anesthesia administration"/>
+				<initiator value="nurse"/>
+				<receiver value="or_system"/>
+				<type value="create"/>
+				<description value="Report Administration of anesthesia"/>
+				<request>
+					<resourceId value="report_anesthesia"/>
+				</request>			
+			</operation>
+
+
+
+
+			<operation>
+				<number value="3"/>
+				<name value="Surgery Report"/>
+				<initiator value="or_system"/>
+				<receiver value="or_system"/>
+				<type value="create"/>
+				<description value="Surgery Report"/>
+				<request>
+					<resourceId value="surgery"/>
+				</request>			
+			</operation>
+
+
+
+
+
+
+		</step>
+
+
+	</process>
+</ExampleScenario>
