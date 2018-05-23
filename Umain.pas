@@ -5,12 +5,19 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes,
   System.Variants, shellapi, winapi.windows, fmx.platform.win,
-  System.rtti,
-  FHIRClient, FHIRResources, FhirUtilities, FHIRBase, FHIRTypes,
-  fmx.Types, fmx.Controls, fmx.Forms, fmx.Graphics, fmx.Dialogs, fmx.ListBox,
-  fmx.Layouts, fmx.TreeView, fmx.Controls.Presentation, fmx.StdCtrls,
-  fmx.TabControl, fmx.ScrollBox, fmx.Memo, fmx.Edit, fmx.DateTimeCtrls,
-  fmx.Menus, System.ImageList, fmx.ImgList;
+  System.rtti,      System.typinfo,
+//  FHIR.R4.Client, FHIR.R4.Resources, Fhir.R4.Utilities, FHIR.R4.Base, FHIR.R4.Types,
+  FHIR.Base.Objects, System.ImageList, FMX.ImgList, FMX.Controls, FMX.Types, FMX.Menus, FMX.Dialogs, FMX.StdCtrls, FMX.ScrollBox, FMX.Memo, FMX.Edit,
+  FMX.DateTimeCtrls, FMX.ListBox, FMX.Controls.Presentation, FMX.Layouts, FMX.TreeView, FMX.TabControl
+, FMX.forms    ,FHIR.Support.DateTime  , FHIR.Support.Collections
+,FHIR.R4.Resources, FHIR.R4.Types , Fhir.R4.Utilities
+//  ,
+//  fmx.Types, fmx.Controls, fmx.Forms, fmx.Graphics, fmx.Dialogs, fmx.ListBox,
+//  fmx.Layouts, fmx.TreeView, fmx.Controls.Presentation, fmx.StdCtrls,
+//  fmx.TabControl, fmx.ScrollBox, fmx.Memo, fmx.Edit, fmx.DateTimeCtrls,
+//  fmx.Menus, System.ImageList, fmx.ImgList, FMX.Objects
+  ;
+
 
 type
 
@@ -21,9 +28,29 @@ type
     property FhirObject: tFHIRObject read fFhirObject write fFhirObject;
   end;
 
+
+  TFHIRButton = class(TButton)
+  private
+    fFhirObject: tFHIRObject;
+    fobjectType:string;
+  public
+    property parentFhirObject: tFHIRObject read fFhirObject write fFhirObject;
+    property objectType: string read fobjectType write fobjectType;
+  end;
+
+
+  TFHIREdit = class(TEdit)
+  private
+    fFhirProperty: tFHIRObject;
+  public
+    property FhirProperty: tFHIRObject read fFhirProperty write fFhirProperty;
+  end;
+
+
+
+
+
   TForm1 = class(TForm)
-    FormStyles: TStyleBook;
-    Button1: TButton;
     TabControl1: TTabControl;
     TreeView1: TTreeView;
     TabItem1: TTabItem;
@@ -122,7 +149,7 @@ type
     btnStep: TCornerButton;
     Label30: TLabel;
     Memo7: TMemo;
-    CornerButton2: TCornerButton;
+    btnPause: TCornerButton;
     Memo8: TMemo;
     Label31: TLabel;
     ComboBox3: TComboBox;
@@ -131,32 +158,39 @@ type
     MenuItem4: TMenuItem;
     MenuItem5: TMenuItem;
     MenuItem6: TMenuItem;
-    Button2: TButton;
     CheckBox1: TCheckBox;
-    Button3: TButton;
+    UpdateExampleScenario: TButton;
     ImageList1: TImageList;
-    Button4: TButton;
-    Button5: TButton;
-    Button6: TButton;
-    Button7: TButton;
-    Button8: TButton;
-    Button9: TButton;
+    UpdateProcess: TButton;
+    UpdateActor: TButton;
+    UpdateInstance: TButton;
+    UpdateAlternative: TButton;
+    UpdateOption: TButton;
+    UpdateOperation: TButton;
     PopupMenu1: TPopupMenu;
-    MenuItem7: TMenuItem;
-    Button11: TButton;
-    Button10: TButton;
-    Button13: TButton;
-    Button12: TButton;
-    Button14: TButton;
-    Button15: TButton;
-    Button16: TButton;
+    DeleteItem: TMenuItem;
+    DeleteActor: TButton;
+    MoveDown: TButton;
+    MoveUp: TButton;
+    DeleteInstance: TButton;
+    DeleteProcess: TButton;
+    DeleteStep: TButton;
     btnAlternative: TCornerButton;
-    Button17: TButton;
-    Button18: TButton;
-    Button19: TButton;
+    DeleteAlternative: TButton;
+    DeleteOption: TButton;
+    DeleteOperation: TButton;
+    ImageList2: TImageList;
+    ImageList3: TImageList;
+    NewExampleScenario: TButton;
+    chkPause: TCheckBox;
+    btnUpdateStep: TButton;
+    StyleBook1: TStyleBook;
+    Button1: TButton;
+    Button2: TButton;
+    Button3: TButton;
     procedure DoInfoClick(Sender: TObject);
     procedure DoApplyStyleLookup(Sender: TObject);
-    function createElement(el_type_, name: string): tFHIRObject;
+//    function createElement(el_type_, name: string): tFHIRObject;
     function addTVItem(TreeView: TTreeView; parent: TFHIRTreeViewItem; itemType, text: string; obj: tFHIRObject): TFHIRTreeViewItem;
     procedure TreeView1Change(Sender: TObject);
     procedure btnActorClick(Sender: TObject);
@@ -166,13 +200,13 @@ type
     procedure OpenClick(Sender: TObject);
     procedure showTab(obj: tFHIRObject);
     procedure btnRenderClick(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
-    procedure Button4Click(Sender: TObject);
-    procedure Button5Click(Sender: TObject);
-    procedure Button6Click(Sender: TObject);
-    procedure Button7Click(Sender: TObject);
-    procedure Button8Click(Sender: TObject);
-    procedure Button9Click(Sender: TObject);
+    procedure UpdateExampleScenarioClick(Sender: TObject);
+    procedure UpdateProcessClick(Sender: TObject);
+    procedure UpdateActorClick(Sender: TObject);
+    procedure UpdateInstanceClick(Sender: TObject);
+    procedure UpdateAlternativeClick(Sender: TObject);
+    procedure UpdateOptionClick(Sender: TObject);
+    procedure UpdateOperationClick(Sender: TObject);
     Procedure ReloadTreeview(sel_item: TTreeViewItem);
     procedure btnProcessClick(Sender: TObject);
     procedure btnVersionClick(Sender: TObject);
@@ -196,11 +230,19 @@ type
     procedure Edit4Exit(Sender: TObject);
     procedure Edit12Exit(Sender: TObject);
     procedure Edit13Exit(Sender: TObject);
-    procedure MenuItem7Click(Sender: TObject);
-    procedure Button10Click(Sender: TObject);
-    procedure Button11Click(Sender: TObject);
-    procedure Button13Click(Sender: TObject);
-    procedure Button12Click(Sender: TObject);
+    procedure DeleteItemClick(Sender: TObject);
+    procedure DeleteActorClick(Sender: TObject);
+    procedure NewExampleScenarioClick(Sender: TObject);
+    procedure MoveDownClick(Sender: TObject);
+    procedure MoveUpClick(Sender: TObject);
+    procedure btnUpdateStepClick(Sender: TObject);
+    procedure chkPauseExit(Sender: TObject);
+    procedure btnOptionClick(Sender: TObject);
+    procedure ComboBox8Change(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure MenuItem6Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -217,24 +259,38 @@ implementation
 
 {$I fhir.inc}
 {$R *.fmx}
+{$R *.Windows.fmx MSWINDOWS}
+
+///////////////////////////////////////////////////////////////////////////////
+// 1. 1 recursive procedure to add a FHIRObject to a treeview
+// each part must know what to recurse - e.g. if it is an exampleScenario it must check the actors, resources, and processes
+// so we could scan this from the structureDefinition
+///////////////////////////////////////////////////////////////////////////////
 
 function TForm1.addTVItem(TreeView: TTreeView; parent: TFHIRTreeViewItem; itemType, text: string; obj: tFHIRObject): TFHIRTreeViewItem;
 var
-  new_item, current_item, Item: TFHIRTreeViewItem;
-var
+  current_item, Item: TFHIRTreeViewItem;
   i: integer;
   objtype:string;
 begin
-
   Item := TFHIRTreeViewItem.Create(TreeView);
-
   objtype:=obj.fhirType;
   if (parent = nil) then
     TreeView.AddObject(Item)
-  else if parent.Count = 0 then
-    parent.AddObject(Item)
   else
     parent.AddObject(Item);
+
+  Item.ImageIndex:=-1;
+
+  if itemType = 'examplescenario' then Item.ImageIndex:=9;
+  if itemType = 'actor' then Item.ImageIndex:=1;
+  if itemType = 'instance' then  Item.ImageIndex:=2;
+  if itemType = 'process' then  Item.ImageIndex:=3;
+  if itemType = 'version' then  Item.ImageIndex:=4;
+  if itemType = 'step' then  Item.ImageIndex:=5;
+  if itemType = 'operation' then  Item.ImageIndex:=6;
+  if itemType = 'alternative' then  Item.ImageIndex:=7;
+  if itemType = 'option' then  Item.ImageIndex:=8;
 
   Item.StylesData['info'] := TValue.From<TNotifyEvent>(DoInfoClick);
   Item.OnApplyStyleLookup := DoApplyStyleLookup;
@@ -242,24 +298,21 @@ begin
   Item.StylesData['sortOrder'] := 1;
   TreeView.Selected := Item;
   Item.Height := 20;
-  result := Item;
   Item.text := text;
   Item.PopupMenu := PopupMenu1;
   Item.FhirObject := obj;
-  // if parent <> nil then item.parentItem:=parent;
 
-  TreeView.EndUpdate;
-  TreeView.repaint;
-
-  // if TreeView.Selected <> nil then TreeView.Selected.Expand;
-
+// do this for the object - any object type:
   if obj is tfhirexamplescenarioinstance then
   begin
     current_item := Item;
+
+// do this for each object in that object type:
     for i := 0 to tfhirexamplescenarioinstance(obj).versionList.Count - 1 do
     begin
-      new_item := addTVItem(TreeView1, current_item, 'version', tfhirexamplescenarioinstance(obj).versionList[i].versionId, tfhirexamplescenarioinstance(obj).versionList[i]);
+      addTVItem(TreeView1, current_item, 'version', tfhirexamplescenarioinstance(obj).versionList[i].versionId, tfhirexamplescenarioinstance(obj).versionList[i]);
     end;
+// until here
   end;
 
   if obj is tfhirexamplescenarioProcess then
@@ -267,33 +320,31 @@ begin
     current_item := Item;
     for i := 0 to tfhirexamplescenarioProcess(obj).stepList.Count - 1 do
     begin
-      new_item := addTVItem(TreeView1, current_item, 'step', 'Step', tfhirexamplescenarioProcess(obj).stepList[i]);
+      addTVItem(TreeView1, current_item, 'step', 'Step', tfhirexamplescenarioProcess(obj).stepList[i]);
     end;
   end;
 
   if obj is tfhirexamplescenarioProcessStep then
   begin
-    // ok so this is wrong      - need to split between top process and lower procs
-
     current_item := Item;
     if tfhirexamplescenarioProcessStep(obj).processList.Count <> 0 then
       for i := 0 to tfhirexamplescenarioProcessStep(obj).processList.Count - 1 do
       begin
-        new_item := addTVItem(TreeView1, current_item, 'process', tfhirexamplescenarioProcessStep(obj).processList[i].title, tfhirexamplescenarioProcessStep(obj).processList[i]);
+        addTVItem(TreeView1, current_item, 'process', tfhirexamplescenarioProcessStep(obj).processList[i].title, tfhirexamplescenarioProcessStep(obj).processList[i]);
       end;
 
-    if tfhirexamplescenarioProcessStep(obj).pause then
+    if tfhirexamplescenarioProcessStep(obj).pauseElement <> nil then
     begin
-      new_item := addTVItem(TreeView1, current_item, 'pause', '(pause)', tfhirexamplescenarioProcessStep(obj).pauseElement);
+//      addTVItem(TreeView1, current_item, 'pause', '(pause)', tfhirexamplescenarioProcessStep(obj).pauseElement);
     end;
     if tfhirexamplescenarioProcessStep(obj).operation <> nil then
     begin
-      new_item := addTVItem(TreeView1, current_item, 'operation', tfhirexamplescenarioProcessStep(obj).operation.name, tfhirexamplescenarioProcessStep(obj).operation);
+      addTVItem(TreeView1, current_item, 'operation', tfhirexamplescenarioProcessStep(obj).operation.name, tfhirexamplescenarioProcessStep(obj).operation);
     end;
 
     if tfhirexamplescenarioProcessStep(obj).alternative <> nil then
     begin
-      new_item := addTVItem(TreeView1, current_item, 'alternative', tfhirexamplescenarioProcessStep(obj).alternative.name, tfhirexamplescenarioProcessStep(obj).alternative);
+      addTVItem(TreeView1, current_item, 'alternative', tfhirexamplescenarioProcessStep(obj).alternative.name, tfhirexamplescenarioProcessStep(obj).alternative);
     end;
   end;
 
@@ -302,249 +353,336 @@ begin
     current_item := Item;
     for i := 0 to tfhirexamplescenarioProcessStepAlternative(obj).optionList.Count - 1 do
     begin
-      new_item := addTVItem(TreeView1, current_item, 'option', 'Option', tfhirexamplescenarioProcessStepAlternative(obj).optionList[i]);
+      addTVItem(TreeView1, current_item, 'option', 'Option', tfhirexamplescenarioProcessStepAlternative(obj).optionList[i]);
     end;
   end;
 
+
+  if obj is tfhirexamplescenario then
+  begin
+    current_item := Item;
+    for i := 0 to tfhirexamplescenario(obj).actorList.Count - 1 do
+      addTVItem(TreeView1, current_item, 'actor', tfhirexamplescenario(obj).actorList[i].name, tfhirexamplescenario(obj).actorList[i]);
+
+    for i := 0 to tfhirexamplescenario(obj).instanceList.Count - 1 do
+      addTVItem(TreeView1, current_item, 'instance', tfhirexamplescenario(obj).instanceList[i].name, tfhirexamplescenario(obj).instanceList[i]);
+
+    for i := 0 to tfhirexamplescenario(obj).processList.count - 1 do
+      if tfhirexamplescenario(obj).ProcessList[i] <> nil then
+        addTVItem(TreeView1, current_item, 'process', tfhirexamplescenario(obj).ProcessList[i].title, tfhirexamplescenario(obj).ProcessList[i]);
+  end;
+
+  TreeView.EndUpdate;
+  TreeView.repaint;
+  result := Item;
+
 end;
 
+///////////////////////////////////////////////////////////////////////////////
+// 2. N buttons to create a new FHIRObject
+///////////////////////////////////////////////////////////////////////////////
+// Actually, each panel has a button for each type of child it supports
+
+
+//2.1 Actor
 procedure TForm1.btnActorClick(Sender: TObject);
 var
   Actor: tfhirexamplescenarioActor;
-  Item, new_item: TFHIRTreeViewItem;
-  targetpos, i: integer;
-begin
+  objclass: System.tclass;
 
-  Item := TFHIRTreeViewItem(TreeView1.Selected);
-  Actor := tfhirexamplescenarioActor(createElement('actor', 'Actor ' + inttostr(exsc.actorList.Count + 1)));
+  RttiContext: TRttiContext;
+  RttiType: TRttiInstanceType;
+  Foo: TObject;
+
+  ctx: TRttiContext;
+  objType: TRttiType;
+  Prop: TRttiProperty;
+
+begin
+  Actor := tfhirexamplescenarioActor.Create;
   Actor.type_ := ExamplescenarioActorTypePerson;
-  Actor.name := 'Actor ' + inttostr(exsc.actorList.Count + 1);
-  Actor.actorId := 'A' + inttostr(exsc.actorList.Count + 1);
-  exsc.actorList.AddItem(Actor);
-  ReloadTreeview(TreeView1.Selected); // (new_item);
-  // TreeView1.Selected := treeview1.selected.ParentItem;
+  Actor.name := 'Actor ' + inttostr(tfhirexamplescenario(TFHIRTreeViewItem(TreeView1.Selected).FhirObject).actorList.Count + 1);
+  Actor.actorId := 'A' + inttostr(tfhirexamplescenario(TFHIRTreeViewItem(TreeView1.Selected).FhirObject).actorList.Count + 1);
+
+  ctx := TRttiContext.Create;
+  objType := ctx.GetType(actor.ClassInfo);
+  form1.caption:=objtype.ToString;
+
+  tfhirexamplescenario(TFHIRTreeViewItem(TreeView1.Selected).FhirObject).actorList.AddItem(Actor);
+  ReloadTreeview(TreeView1.Selected);
 
 end;
+
 
 procedure TForm1.btnAlternativeClick(Sender: TObject);
 var
   alternative: tfhirexamplescenarioProcessStepAlternative;
-  Item, new_item: TFHIRTreeViewItem;
-  targetpos, i: integer;
 begin
+  alternative := tfhirexamplescenarioProcessStepAlternative.Create;
 
-  Item := TFHIRTreeViewItem(TreeView1.Selected);
-  alternative := tfhirexamplescenarioProcessStepAlternative(createElement('alternative', 'Alternative'));
   alternative.name := 'Alternative';
   tfhirexamplescenarioProcessStep(TFHIRTreeViewItem(TreeView1.Selected).FhirObject).alternative:= alternative;
-  ReloadTreeview(TreeView1.Selected); // (new_item);
+  ReloadTreeview(TreeView1.Selected);
 
 end;
+
 
 procedure TForm1.btnOperationClick(Sender: TObject);
 var
   operation: tfhirexamplescenarioProcessStepOperation;
-  Item, new_item: TFHIRTreeViewItem;
-  idx, targetpos, i: integer;
+  Item: TFHIRTreeViewItem;
 
 begin
-
-  Item := TFHIRTreeViewItem(TreeView1.Selected);
-  operation := tfhirexamplescenarioProcessStepOperation(createElement('operation', 'Operation'));
+  operation := tfhirexamplescenarioProcessStepOperation.Create;
+//Set properties for object
   operation.name := 'Operation';
-  tfhirexamplescenarioProcessStep(TFHIRTreeViewItem(Item).FhirObject).operation := operation;
-  ReloadTreeview(TreeView1.Selected); // (new_item);
+//If only one
+  tfhirexamplescenarioProcessStep(TFHIRTreeViewItem(TreeView1.Selected).FhirObject).operation := operation;
+  ReloadTreeview(TreeView1.Selected);
+end;
+
+procedure TForm1.btnOptionClick(Sender: TObject);
+var
+  Option: tfhirexamplescenarioProcessStepAlternativeOption;
+begin
+  Option := tfhirexamplescenarioProcessStepAlternativeOption.Create;
+//Set properties for object
+  Option.description := 'Option ' + inttostr(tfhirexamplescenarioProcessStepAlternative(TFHIRTreeViewItem(TreeView1.Selected).FhirObject).optionList.Count + 1);
+
+  tfhirexamplescenarioProcessStepAlternative(TFHIRTreeViewItem(TreeView1.Selected).FhirObject).OptionList.AddItem(Option);
+  ReloadTreeview(TreeView1.Selected);
 
 end;
 
+//2.4 Sub-Process
 procedure TForm1.btnProcess2Click(Sender: TObject);
 var
   Process: tfhirexamplescenarioProcess;
-  Item, new_item: TFHIRTreeViewItem;
-  targetpos, i: integer;
 
 begin
+  Process := tfhirexamplescenarioProcess.Create;
 
-  Item := TFHIRTreeViewItem(TreeView1.Selected);
-
-  Process := tfhirexamplescenarioProcess(createElement('process', 'New Process'));
   Process.title := 'Process';
-  // exsc.process := (Process);
-  tfhirexamplescenarioProcessStep(TFHIRTreeViewItem(TreeView1.Selected).FhirObject).processList.AddItem(Process);
 
-  ReloadTreeview(TreeView1.Selected); // (new_item);
+  tfhirexamplescenarioProcessStep(TFHIRTreeViewItem(TreeView1.Selected).FhirObject).processList.AddItem(Process);
+  ReloadTreeview(TreeView1.Selected);
 
 end;
 
+//2.5 Main process
 procedure TForm1.btnProcessClick(Sender: TObject);
 var
   Process: tfhirexamplescenarioProcess;
-  Item, new_item: TFHIRTreeViewItem;
-  targetpos, i: integer;
 begin
-  if exsc.Process <> nil then
-  begin
-    Showmessage('Multiple Processes Not Implemented');
-    exit;
-  end;
-
-  Item := TFHIRTreeViewItem(TreeView1.Selected);
-  Process := tfhirexamplescenarioProcess(createElement('process', 'New Process'));
+  Process := tfhirexamplescenarioProcess.Create;
   Process.title := 'Process';
-  exsc.Process := (Process);
-  ReloadTreeview(TreeView1.Selected); // (new_item);
-
-end;
-
-function TForm1.createElement(el_type_, name: string): tFHIRObject;
-var
-  res: tFHIRObject;
-begin
-
-  if el_type_ = 'exampleScenario' then
-  begin
-    res := TFHIRExampleScenario.Create;
-  end;
-
-  if el_type_ = 'actor' then
-  begin
-    res := tfhirexamplescenarioActor.Create;
-  end;
-
-  if el_type_ = 'instance' then
-  begin
-    res := tfhirexamplescenarioinstance.Create;
-  end;
-
-  if el_type_ = 'process' then
-  begin
-    res := tfhirexamplescenarioProcess.Create;
-  end;
-
-  if el_type_ = 'step' then
-  begin
-    res := tfhirexamplescenarioProcessStep.Create;
-  end;
-
-  if el_type_ = 'version' then
-  begin
-    res := tfhirexamplescenarioInstanceVersion.Create;
-  end;
-
-  if el_type_ = 'alternative' then
-  begin
-    res := tfhirexamplescenarioProcessStepAlternative.Create;
-  end;
-
-  if el_type_ = 'option' then
-  begin
-    res := tfhirexamplescenarioProcessStepAlternativeOption.Create;
-  end;
-
-  if el_type_ = 'operation' then
-  begin
-    res := tfhirexamplescenarioProcessStepOperation.Create;
-  end;
-
-  result := res;
+  tfhirexamplescenario(TFHIRTreeViewItem(TreeView1.Selected).FhirObject).processList.AddItem(Process);
+  ReloadTreeview(TreeView1.Selected);
 
 end;
 
 procedure TForm1.btnResourceClick(Sender: TObject);
 var
   Instance: tfhirexamplescenarioinstance;
-  Item, new_item: TFHIRTreeViewItem;
-  targetpos, i: integer;
+begin
+  Instance := tFHIRExampleScenarioInstance.Create;
+
+  Instance.resourceType := ResourceTypesNull;
+  Instance.name := 'Resource ' + inttostr(tfhirexamplescenario(TFHIRTreeViewItem(TreeView1.Selected).FhirObject).instanceList.Count + 1);
+  Instance.resourceId := 'R' + inttostr(tfhirexamplescenario(TFHIRTreeViewItem(TreeView1.Selected).FhirObject).instanceList.Count + 1);
+
+//  exsc.instanceList.AddItem(Instance);
+  tfhirexamplescenario(TFHIRTreeViewItem(TreeView1.Selected).FhirObject).instanceList.AddItem(Instance);
+
+  ReloadTreeview(TreeView1.Selected);
+end;
+
+
+procedure TForm1.NewExampleScenarioClick(Sender: TObject);
+var
+  ExampleScenario: TFHIRExampleScenario;
+begin
+  ExampleScenario := TFHIRExampleScenario.create;
+  ExampleScenario.name := 'Example Scenario';
+  exsc := ExampleScenario;
+  ReloadTreeview(TreeView1.Selected);
+
+  showTab(TFHIRTreeViewItem(TreeView1.Selected).fFhirObject);
+
+//  showTab(exsc);
+
+
+
+end;
+
+
+procedure TForm1.btnStepClick(Sender: TObject);
+var
+  Step: tfhirexamplescenarioProcessStep;
 begin
 
-  Item := TFHIRTreeViewItem(TreeView1.Selected);
-  Instance := tfhirexamplescenarioinstance(createElement('instance', 'Resource'));
-  Instance.resourceType := ResourceTypesNull;
-  Instance.name := 'Resource ' + inttostr(exsc.instanceList.Count + 1);
-  Instance.resourceId := 'R' + inttostr(exsc.instanceList.Count + 1);
-  // Instance.id := 'new';
-  exsc.instanceList.AddItem(Instance);
-  ReloadTreeview(TreeView1.Selected); // (new_item);
+//  Item := TFHIRTreeViewItem(TreeView1.Selected);
+  Step := tfhirexamplescenarioProcessStep.Create;
+  tfhirexamplescenarioProcess(TFHIRTreeViewItem(TreeView1.Selected).FhirObject).stepList.AddItem(Step);
+  ReloadTreeview(TreeView1.Selected);
+
+end;
+
+procedure TForm1.btnVersionClick(Sender: TObject);
+var
+  version: tfhirexamplescenarioInstanceVersion;
+begin
+  version := tfhirexamplescenarioInstanceVersion.Create;
+
+  tfhirexamplescenarioinstance(TFHIRTreeViewItem(TreeView1.Selected).FhirObject).versionList.AddItem(version);
+
+  ReloadTreeview(TreeView1.Selected);
   // TreeView1.Selected := Item;
 
 end;
 
-procedure TForm1.Button10Click(Sender: TObject);
+
+
+procedure TForm1.Button1Click(Sender: TObject);
 begin
-  MenuItem7Click(Self)
+
+//form1.caption:=button1.ClassType.ClassName;
+
+form1.caption:=TRttiContext.Create.GetType(button1.ClassType.ClassParent).ToString;
+
+//form1.caption:=TTypeInfo(Typeinfo(TRttiContext.Create.GetType(button1.ClassType.))^).Name
 end;
 
-procedure TForm1.Button11Click(Sender: TObject);
+procedure TForm1.Button2Click(Sender: TObject);
 var
-  es: TFHIRExampleScenario;
-  Item, new_item: TFHIRTreeViewItem;
-  targetpos, i: integer;
-begin
-
-  // Item := TFHIRTreeViewItem(TreeView1.Selected);
-  es := TFHIRExampleScenario(createElement('exampleScenario', 'ExampleScenario'));
-  es.name := 'Example Scenario';
-  exsc := es;
-  ReloadTreeview(nil); // (new_item);
-  // TreeView1.Selected := nil;
-
-end;
-
-procedure TForm1.Button12Click(Sender: TObject);
-var
-  idx: integer;
-begin
-  TreeView1.Selected.Index := TreeView1.Selected.Index - 1;
-  idx := exsc.actorList.IndexOf(tfhirexamplescenarioActor(TFHIRTreeViewItem(TreeView1.Selected).FhirObject));
-  if idx > 1 then
-    exsc.actorList.Exchange(idx, idx - 1);
-  ReloadTreeview(TreeView1.Selected); // (new_item);
-end;
-
-procedure TForm1.Button13Click(Sender: TObject);
-var
-  idx: integer;
+  actor: tfhirexamplescenarioActor;
+  ctx: TRttiContext;
+  objType: TRttiType;
+  ltype:TRttiType;
 
 begin
 
-  TreeView1.Selected.Index := TreeView1.Selected.Index + 1;
+//  form1.caption:=TFHIRTreeViewItem(TreeView1.Selected).FhirObject.fhirType;
+// if property, we have FHIRObject.?????
+{
+//  form1.caption:=TRttiContext.Create.GetType(button1.ClassType.ClassParent).ToString;
+  Actor := tfhirexamplescenarioActor.Create;
+//  Set properties for object
+  Actor.type_ := ExamplescenarioActorTypePerson;
+  Actor.name := 'Actor ' + inttostr(tfhirexamplescenario(TFHIRTreeViewItem(TreeView1.Selected).FhirObject).actorList.Count + 1);
+  Actor.actorId := 'A' + inttostr(tfhirexamplescenario(TFHIRTreeViewItem(TreeView1.Selected).FhirObject).actorList.Count + 1);
 
-  idx := exsc.actorList.IndexOf(tfhirexamplescenarioActor(TFHIRTreeViewItem(TreeView1.Selected).FhirObject));
-  if idx < exsc.actorList.Count - 1 then
-    exsc.actorList.Exchange(idx, idx + 1);
-  ReloadTreeview(TreeView1.Selected); // (new_item);
+//  (tfhirexamplescenarioActor as TObject).
+//  objclass:=TRttiContext.Create.GetType(TObject(tfhirexamplescenarioActor).ClassType.ClassParent);
+//  form1.caption:=objclass.ClassName;
+
+  ctx := TRttiContext.Create;
+  objType := ctx.GetType(actor.ClassInfo);
+  objType := ctx.FindType('FHIR.R4.Resources.ExamplescenarioActor');
+  form1.caption:=objtype.ToString;
+}
+
 
 end;
 
 procedure TForm1.Button3Click(Sender: TObject);
+var obj:TFHIRObject;
+     clsType: TFslObjectClass;
+begin
+
+//  obj:=TFHirObject(TFHIRTreeViewItem(TreeView1.Selected).FhirObject.ClassType.Create);
+//  form1.Caption:=obj.ClassName;
+
+end;
+
+procedure TForm1.chkPauseExit(Sender: TObject);
+begin
+ btnUpdateStepClick(Self);
+end;
+
+///////////////////////////////////////////////////////////////////////////////
+// 3. for each delete button
+///////////////////////////////////////////////////////////////////////////////
+
+procedure TForm1.DeleteActorClick(Sender: TObject);
+begin
+  DeleteItemClick(Self)
+end;
+
+
+///////////////////////////////////////////////////////////////////////////////
+// 4. Move Up
+///////////////////////////////////////////////////////////////////////////////
+
+procedure TForm1.MoveUpClick(Sender: TObject);
+var
+  idx: integer;
+begin
+{ find how this can be generic code}
+
+  idx := exsc.actorList.IndexOf(tfhirexamplescenarioActor(TFHIRTreeViewItem(TreeView1.Selected).FhirObject));
+  if idx > 0 then begin
+  exsc.actorList.Exchange(idx, idx - 1);
+  TreeView1.Selected.Index := TreeView1.Selected.Index - 1;
+  end;
+  ReloadTreeview(TreeView1.Selected);
+end;
+
+
+///////////////////////////////////////////////////////////////////////////////
+// 5. Move Down
+///////////////////////////////////////////////////////////////////////////////
+
+procedure TForm1.MoveDownClick(Sender: TObject);
+var
+  idx: integer;
+begin
+{ find how this can be generic code}
+
+  idx := exsc.actorList.IndexOf(tfhirexamplescenarioActor(TFHIRTreeViewItem(TreeView1.Selected).FhirObject));
+  if idx < exsc.actorList.Count - 1 then begin
+  exsc.actorList.Exchange(idx, idx + 1);
+  TreeView1.Selected.Index := TreeView1.Selected.Index + 1;
+  end;
+  ReloadTreeview(TreeView1.Selected);
+
+end;
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+// 6. N procedures to update each container into the resource
+///////////////////////////////////////////////////////////////////////////////
+
+//6.1
+procedure TForm1.UpdateExampleScenarioClick(Sender: TObject);
 var
   obj: TFHIRExampleScenario;
 
 begin
-  obj := exsc;
+  obj := tfhirexamplescenario(TFHIRTreeViewItem(TreeView1.Selected).FhirObject);
   if obj = nil then
     exit;
-  (obj).name := Edit5.text;
+  obj.name := Edit5.text;
   (obj).title := Edit1.text;
   (obj).status := TfHIRPublicationStatusEnum(ComboBox2.ItemIndex);
   obj.experimental := CheckBox1.IsChecked;
   obj.id := Edit6.text;
-  obj.date.makeLocal(DateEdit1.DateTime);
+  obj.date := TDateTimeEx.makeLocal(DateEdit1.DateTime);
   obj.version := Edit8.text;
   obj.publisher := Edit7.text;
   obj.purpose := Memo3.text;
 
 end;
 
-procedure TForm1.Button4Click(Sender: TObject);
+//6.2
+procedure TForm1.UpdateProcessClick(Sender: TObject);
 var
   obj: tfhirexamplescenarioProcess;
 
 begin
-  if obj = nil then
-    exit;
 
-  obj := exsc.Process;
+  obj := tfhirexamplescenarioProcess(TFHIRTreeViewItem(TreeView1.Selected).FhirObject);
   if obj = nil then
     exit;
   obj.title := Edit4.text;
@@ -554,7 +692,8 @@ begin
 
 end;
 
-procedure TForm1.Button5Click(Sender: TObject);
+//6.3
+procedure TForm1.UpdateActorClick(Sender: TObject);
 var
   obj: tfhirexamplescenarioActor;
 
@@ -568,7 +707,8 @@ begin
   obj.description := Memo1.text;
 end;
 
-procedure TForm1.Button6Click(Sender: TObject);
+//6.4
+procedure TForm1.UpdateInstanceClick(Sender: TObject);
 var
   obj: tfhirexamplescenarioinstance;
 
@@ -583,7 +723,8 @@ begin
 
 end;
 
-procedure TForm1.Button7Click(Sender: TObject);
+//6.5
+procedure TForm1.UpdateAlternativeClick(Sender: TObject);
 var
   obj: tfhirexamplescenarioProcessStepAlternative;
 
@@ -594,7 +735,8 @@ begin
   obj.name := Edit12.text;
 end;
 
-procedure TForm1.Button8Click(Sender: TObject);
+//6.6
+procedure TForm1.UpdateOptionClick(Sender: TObject);
 var
   obj: tfhirexamplescenarioProcessStepAlternativeOption;
 
@@ -606,9 +748,10 @@ begin
 
 end;
 
-procedure TForm1.Button9Click(Sender: TObject);
-var
-  obj: tfhirexamplescenarioProcessStepOperation;
+//6.7
+procedure TForm1.UpdateOperationClick(Sender: TObject);
+//var
+//  obj: tfhirexamplescenarioProcessStepOperation;
 
 begin
   (*
@@ -633,11 +776,18 @@ begin
   *)
 end;
 
+///////////////////////////////////////////////////////////////////////////////
+// 7. N procedures upon exit each control, to update the entire object
+///////////////////////////////////////////////////////////////////////////////
+
+
+//7.1 ExampleScenario.status
 procedure TForm1.ComboBox2Exit(Sender: TObject);
 begin
-  Button3Click(Self);
+  UpdateExampleScenarioClick(Self);
 end;
 
+//7.2 Operation.initiator
 procedure TForm1.ComboBox4Exit(Sender: TObject);
 var
   obj: tfhirexamplescenarioProcessStepOperation;
@@ -649,6 +799,7 @@ begin
 
 end;
 
+//7.3 Operation.receiver
 procedure TForm1.ComboBox5Exit(Sender: TObject);
 var
   obj: tfhirexamplescenarioProcessStepOperation;
@@ -660,6 +811,7 @@ begin
 
 end;
 
+//7.4 Operation.request
 procedure TForm1.ComboBox6Exit(Sender: TObject);
 var
   obj: tfhirexamplescenarioProcessStepOperation;
@@ -682,6 +834,7 @@ begin
 
 end;
 
+//7.4 Operation.response
 procedure TForm1.ComboBox7Exit(Sender: TObject);
 var
   obj: tfhirexamplescenarioProcessStepOperation;
@@ -703,6 +856,12 @@ begin
     end;
 end;
 
+procedure TForm1.ComboBox8Change(Sender: TObject);
+begin
+
+end;
+
+//8. Button for saving
 procedure TForm1.btnSaveClick(Sender: TObject);
 begin
   if filename = '' then
@@ -718,6 +877,30 @@ begin
 
 end;
 
+procedure TForm1.btnUpdateStepClick(Sender: TObject);
+
+var
+  obj: tfhirexamplescenarioProcessStep;
+
+begin
+  obj := tfhirexamplescenarioProcessStep(TFHIRTreeViewItem(TreeView1.Selected).FhirObject);
+  if obj = nil then
+    exit;
+
+if chkPause.ischecked then
+obj.pauseElement:=TFHIRBoolean.Create(true)
+else
+obj.deleteProperty('pause', nil);
+
+  ReloadTreeview(TreeView1.Selected);
+
+
+
+
+
+  end;
+
+//9. Button for saveAs
 function TForm1.SaveAs: integer;
 begin
   result := -1;
@@ -731,37 +914,7 @@ begin
 
 end;
 
-procedure TForm1.btnStepClick(Sender: TObject);
-var
-  Step: tfhirexamplescenarioProcessStep;
-  Item, new_item: TFHIRTreeViewItem;
-  targetpos, i: integer;
-begin
-
-  Item := TFHIRTreeViewItem(TreeView1.Selected);
-  Step := tfhirexamplescenarioProcessStep(createElement('step', 'Step'));
-  tfhirexamplescenarioProcess(TFHIRTreeViewItem(TreeView1.Selected).FhirObject).stepList.AddItem(Step);
-  ReloadTreeview(TreeView1.Selected); // (new_item);
-
-end;
-
-procedure TForm1.btnVersionClick(Sender: TObject);
-var
-  version: tfhirexamplescenarioInstanceVersion;
-  Item, new_item: TFHIRTreeViewItem;
-  targetpos, i: integer;
-begin
-  Item := TFHIRTreeViewItem(TreeView1.Selected);
-
-  version := tfhirexamplescenarioInstanceVersion(createElement('version', 'version'));
-
-  tfhirexamplescenarioinstance(TFHIRTreeViewItem(TreeView1.Selected).FhirObject).versionList.AddItem(version);
-
-  ReloadTreeview(TreeView1.Selected); // (new_item);
-  // TreeView1.Selected := Item;
-
-end;
-
+// 10 Render result
 procedure TForm1.btnRenderClick(Sender: TObject);
 var
   str: string;
@@ -773,7 +926,7 @@ begin
 
   str := getCurrentDir;
 
-  SetCurrentDir('..\simplerender');
+  SetCurrentDir('..\Render\simplerender');
   resourceToFile(exsc, '.\current.xml', ffXml, OutputStylePretty);
   ExecuteFile := 'parse_all.bat';
 
@@ -809,22 +962,32 @@ begin
 
 end;
 
-procedure TForm1.DoInfoClick(Sender: TObject);
-var
-  i: integer;
-begin
-end;
+//7.5 Alternative.name
 
 procedure TForm1.Edit12Exit(Sender: TObject);
 begin
-  Button7Click(Self);
+  UpdateAlternativeClick(Self);
 end;
+
+
+procedure TForm1.DoInfoClick(Sender: TObject);
+begin
+begin end
+end;
+
+procedure TForm1.DoApplyStyleLookup(Sender: TObject);
+begin
+begin end
+end;
+
+//7.6 Option.name
 
 procedure TForm1.Edit13Exit(Sender: TObject);
 begin
-  Button8Click(Self);
+  UpdateOptionClick(Self);
 end;
 
+//7.7 Operation.name
 procedure TForm1.Edit14Exit(Sender: TObject);
 
 var
@@ -837,6 +1000,7 @@ begin
 
 end;
 
+//7.8 Operation.number
 procedure TForm1.Edit15Exit(Sender: TObject);
 var
   obj: tfhirexamplescenarioProcessStepOperation;
@@ -848,6 +1012,7 @@ begin
 
 end;
 
+//7.8 Operation.type
 procedure TForm1.Edit16Exit(Sender: TObject);
 var
   obj: tfhirexamplescenarioProcessStepOperation;
@@ -859,51 +1024,44 @@ begin
   (obj).type_ := Edit16.text;
 end;
 
+//7.9 Actor.Name
 procedure TForm1.Edit3Exit(Sender: TObject);
 begin
-  Button5Click(Self);
+  UpdateActorClick(Self);
 end;
 
+//7.10 Process Title
 procedure TForm1.Edit4Exit(Sender: TObject);
 begin
-  Button4Click(Self);
+  UpdateProcessClick(Self);
 end;
 
+//7.11 Instance.Name
 procedure TForm1.Edit9Exit(Sender: TObject);
 begin
-  Button6Click(Self);
+  UpdateInstanceClick(Self);
 end;
 
+
+//11 Start app and initialize
 procedure TForm1.FormShow(Sender: TObject);
 begin
-  // if checkbox1.IsCheckedStored then IsChecked := not IsChecked;
-  CheckBox1.Change;
-  CheckBox1.IsChecked := not CheckBox1.IsChecked;
-  CheckBox1.repaint;
-
   filename := '';
 
   if TreeView1.globalCount = 0 then
   begin
     if not Assigned(exsc) then
-      Button11Click(Self);
-    // exsc := TFHIRExampleScenario.Create;
-    // addTVItem(TreeView1, nil, 'examplescenario', 'Example Scenario', exsc);
+      NewExampleScenarioClick(Self);
   end;
 
-  TreeView1.Selected := nil;
 
-  {
-    button3.Enabled:=false;
-    button4.Enabled:=false;
-    button5.Enabled:=false;
-    button6.Enabled:=false;
-    button7.Enabled:=false;
-    button8.Enabled:=false;
-    button9.Enabled:=false;
-  }
+//  TreeView1.Selected := nil;
+//  ReloadTreeview(nil);
+
+
 end;
 
+//7.12 Operation.Description
 procedure TForm1.Memo8Exit(Sender: TObject);
 var
   obj: tfhirexamplescenarioProcessStepOperation;
@@ -915,11 +1073,13 @@ begin
 
 end;
 
-procedure TForm1.MenuItem7Click(Sender: TObject);
-var
-  es: TFHIRExampleScenario;
-var
-  Actor: tfhirexamplescenarioActor;
+procedure TForm1.MenuItem6Click(Sender: TObject);
+begin
+SaveAs;
+end;
+
+//12 Delete any item
+procedure TForm1.DeleteItemClick(Sender: TObject);
 var
   prt: TTreeViewItem;
   obj: tFHIRObject;
@@ -936,11 +1096,9 @@ begin
 
   if obj is tfhirexamplescenarioProcess then
   begin
-    // still need to check if parent is examplescenario or step.
     if TFHIRTreeViewItem(TreeView1.Selected.ParentItem).FhirObject is TFHIRExampleScenario then
     begin
-      TFHIRExampleScenario(TFHIRTreeViewItem(TreeView1.Selected.ParentItem).FhirObject).Process.dropEmpty;
-      TFHIRExampleScenario(TFHIRTreeViewItem(TreeView1.Selected.ParentItem).FhirObject).deleteProperty('process', nil);
+      TFHIRExampleScenario(TFHIRTreeViewItem(TreeView1.Selected.ParentItem).FhirObject).processList.DeleteByReference(TFHIRTreeViewItem(TreeView1.Selected).FhirObject);
     end
     else if TFHIRTreeViewItem(TreeView1.Selected.ParentItem).FhirObject is tfhirexamplescenarioProcessStep then
     begin
@@ -977,25 +1135,13 @@ begin
   end;
 
 
-
-
-
-
-
-
-
-
-
-
-
   ReloadTreeview(prt);
 
 end;
 
+//13 Open
 procedure TForm1.OpenClick(Sender: TObject);
-var
-  temp_item: TFHIRTreeViewItem;
-  i: integer;
+
 begin
   OpenDialog1.InitialDir := getCurrentDir;
   if OpenDialog1.Execute then
@@ -1003,14 +1149,15 @@ begin
     Form1.Caption := 'Example Scenario Creator - ' + extractfilename(OpenDialog1.filename);
     filename := OpenDialog1.filename;
     exsc := TFHIRExampleScenario(filetoResource(OpenDialog1.filename));
-    ReloadTreeview(nil); // (new_item);
+    ReloadTreeview(nil);
   end;
 
 end;
 
+//14 1 item to reload the top level treeview
 Procedure TForm1.ReloadTreeview(sel_item: TTreeViewItem);
 var
-  current_item, new_item: TFHIRTreeViewItem;
+  current_item: TFHIRTreeViewItem;
   i: integer;
   Actor: tfhirexamplescenarioActor;
   Instance: tfhirexamplescenarioinstance;
@@ -1018,52 +1165,18 @@ var
   sel_text: string;
 
 begin
-
-  // Todo: add a parameter which is the selected item at the end. this cannot be by reference, so it has to be a value that has to be extracted.
-  // e.g.
-  // lookup the name of a item. if there are more items with the same name, keep the (global) index.
-  // at the end, rebuild the tree, and lookup the item that has the name. if the index is >1, then do a next lookup until n=index
-  //
-
   sel_index := -1;
   sel_text := '';
 
-  if sel_item <> nil then
-  begin
-    sel_index := sel_item.GlobalIndex;
-    // sel_text:=treeview1.Selected.Text;
-  end;
+  if sel_item <> nil then sel_index := sel_item.GlobalIndex;
 
   TreeView1.Clear;
+// addTVItem is recursive so we just need to start populating the top level
   current_item := addTVItem(TreeView1, nil, 'examplescenario', 'Example Scenario', exsc);
 
-  for i := 0 to exsc.actorList.Count - 1 do
-  begin
-    Actor := exsc.actorList[i];
-    new_item := addTVItem(TreeView1, current_item, 'actor', Actor.name, Actor);
-  end;
+  if sel_index <> -1 then TreeView1.Selected := TreeView1.ItemByGlobalIndex(sel_index);
 
-  // temp_item := current_item;
-  for i := 0 to exsc.instanceList.Count - 1 do
-  begin
-    Instance := exsc.instanceList[i];
-    new_item := addTVItem(TreeView1, current_item, 'instance', Instance.name, Instance);
-  end;
-  // current_item := temp_item;
-
-  // for i := 0 to exsc.processList.count - 1 do
-  if exsc.Process <> nil then
-  begin
-    new_item := addTVItem(TreeView1, current_item, 'process', exsc.Process.title, exsc.Process);
-    // current_item := new_item;
-    // temp_item := current_item;
-  end;
-
-  if sel_index <> -1 then
-  begin
-    // for i := 0 to treeview1.GlobalCount do
-    TreeView1.Selected := TreeView1.ItemByGlobalIndex(sel_index);
-  end;
+  showTab(TFHIRTreeViewItem(TreeView1.Selected).FhirObject);
 
 end;
 
@@ -1076,13 +1189,14 @@ begin
     exit;
 
   internal := true;
-  if Button3.enabled then
-    Button3Click(Self);
-  Button4Click(Self);
-  Button5Click(Self);
-  Button6Click(Self);
-  Button7Click(Self);
-  Button8Click(Self);
+  if UpdateExampleScenario.enabled then
+    UpdateExampleScenarioClick(Self);
+  UpdateProcessClick(Self);
+  UpdateActorClick(Self);
+  UpdateInstanceClick(Self);
+  UpdateAlternativeClick(Self);
+  UpdateOptionClick(Self);
+  btnUpdateStepClick(Self);
   // button9click(self);
   internal := false;
 
@@ -1090,9 +1204,6 @@ end;
 
 procedure TForm1.TreeView1Change(Sender: TObject);
 var
-  currentType: string;
-var
-  Actor: tfhirexamplescenarioActor;
   obj: tFHIRObject;
 begin
 
@@ -1101,20 +1212,12 @@ begin
   showTab(obj);
 end;
 
-procedure TForm1.DoApplyStyleLookup(Sender: TObject);
-var
-  Item: TTreeViewItem;
-begin
-end;
-
 procedure TForm1.showTab(obj: tFHIRObject);
 var
   i: integer;
-  str: string;
 
 begin
   internal := false;
-  // TabControl2Change(Self);
   internal := true;
 
   for i := 0 to TabControl2.TabCount - 1 do
@@ -1125,7 +1228,7 @@ begin
   if obj is TFHIRExampleScenario then
   begin
     TabControl2.tabindex := 1;
-    Button3.enabled := true;
+    UpdateExampleScenario.enabled := true;
     Edit5.text := TFHIRExampleScenario(obj).name;
     Edit1.text := TFHIRExampleScenario(obj).title;
     ComboBox2.ItemIndex := integer(TFHIRExampleScenario(obj).status);
@@ -1143,7 +1246,7 @@ begin
   if obj is tfhirexamplescenarioActor then
   begin
     TabControl2.tabindex := 2;
-    Button5.enabled := true;
+    UpdateActor.enabled := true;
     Edit3.text := tfhirexamplescenarioActor(obj).name;
     ComboBox1.ItemIndex := integer(tfhirexamplescenarioActor(obj).type_);
     Edit2.text := tfhirexamplescenarioActor(obj).actorId;
@@ -1152,7 +1255,7 @@ begin
   if obj is tfhirexamplescenarioinstance then
   begin
     TabControl2.tabindex := 3;
-    Button6.enabled := true;
+    UpdateInstance.enabled := true;
     Edit10.text := tfhirexamplescenarioinstance(obj).resourceId;
     ComboBox3.ItemIndex := integer(tfhirexamplescenarioinstance(obj).resourceType);
     Edit9.text := tfhirexamplescenarioinstance(obj).name;
@@ -1162,7 +1265,7 @@ begin
   if obj is tfhirexamplescenarioProcess then
   begin
     TabControl2.tabindex := 4;
-    Button4.enabled := true;
+    UpdateProcess.enabled := true;
     Edit4.text := tfhirexamplescenarioProcess(obj).title;
     Memo2.text := tfhirexamplescenarioProcess(obj).description;
     Memo6.text := tfhirexamplescenarioProcess(obj).preConditions;
@@ -1171,23 +1274,25 @@ begin
   if obj is tfhirexamplescenarioProcessStep then
   begin
     TabControl2.tabindex := 5;
+    if tfhirexamplescenarioProcessStep(TFHIRTreeViewItem(TreeView1.Selected).FhirObject).pause then
+    chkPause.ischecked:= true else chkPause.ischecked:= false;
   end;
   if obj is tfhirexamplescenarioProcessStepAlternative then
   begin
     TabControl2.tabindex := 6;
-    Button7.enabled := true;
+    UpdateAlternative.enabled := true;
     Edit12.text := tfhirexamplescenarioProcessStepAlternative(obj).name;
   end;
   if obj is tfhirexamplescenarioProcessStepAlternativeOption then
   begin
     TabControl2.tabindex := 7;
-    Button8.enabled := true;
+    UpdateOption.enabled := true;
     Memo5.text := tfhirexamplescenarioProcessStepAlternativeOption(obj).description;
   end;
   if obj is tfhirexamplescenarioProcessStepOperation then
   begin
     TabControl2.tabindex := 8;
-    Button9.enabled := true;
+    UpdateOperation.enabled := true;
     Edit14.text := tfhirexamplescenarioProcessStepOperation(obj).name;
     Edit15.text := tfhirexamplescenarioProcessStepOperation(obj).number;
     Edit16.text := tfhirexamplescenarioProcessStepOperation(obj).type_;
@@ -1227,5 +1332,7 @@ begin
   TabControl2.ActiveTab.Visible := true;
   internal := false;
 end;
+
+
 
 end.

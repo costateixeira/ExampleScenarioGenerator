@@ -1,0 +1,38 @@
+@startuml
+title Emergency Apendectomy
+
+actor "ER Physician" as physician
+participant "ER System" as er_system
+participant "OR System" as or_system
+actor "Nurse" as nurse
+actor "Patient" as patient
+
+
+group Enter Order
+physician-> er_system : Enter Order\n
+er_system-> or_system : Submit Surgery Order\n [[#surg_request Emergency apendectomy]]\n
+end
+
+group Assess surgery
+or_system-> or_system : Derive actions for surgery\n [[#consent_task Request Consent]]\n [[#iv_lock_request Request IV Lock placement]]\n
+or_system-> nurse : show consent is needed\n
+end
+or_system-> or_system : IV Lock is needed\n [[#iv_lock_request Request IV Lock placement]]\n
+
+group Consent
+nurse-> patient : request consent\n
+patient-> nurse : grant consent\n
+nurse-> or_system : record consent\n [[#consent Consent]]\n
+end
+or_system-> or_system : Patient Preparation plan\n [[#prep_patient Request Patient preparation]]\n
+or_system-> nurse : IV Lock request\n [[#req_anesthesia Request use of anesthesia]]\n
+nurse-> patient : Place IV Lock\n
+nurse-> or_system : Register IV Lock placement\n [[#iv_lock IV Lock placement]]\n
+
+...
+
+nurse-> or_system : Report Anesthesia administration\n [[#report_anesthesia Report use of anesthesia]]\n
+or_system-> or_system : Surgery Report\n [[#surgery Surgery]]\n
+
+
+@enduml

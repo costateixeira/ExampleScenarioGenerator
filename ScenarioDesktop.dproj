@@ -1,12 +1,12 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{74385F87-2AD9-497A-A9EE-DED87840B8C8}</ProjectGuid>
-        <ProjectVersion>18.2</ProjectVersion>
+        <ProjectVersion>18.4</ProjectVersion>
         <FrameworkType>FMX</FrameworkType>
         <MainSource>ScenarioDesktop.dpr</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Debug</Config>
-        <Platform Condition="'$(Platform)'==''">Win32</Platform>
+        <Config Condition="'$(Config)'==''">Release</Config>
+        <Platform Condition="'$(Platform)'==''">Win64</Platform>
         <TargetedPlatforms>23</TargetedPlatforms>
         <AppType>Application</AppType>
     </PropertyGroup>
@@ -91,6 +91,7 @@
         <Icns_MainIcns>$(BDS)\bin\delphi_PROJECTICNS.icns</Icns_MainIcns>
         <SanitizedProjectName>ScenarioDesktop</SanitizedProjectName>
         <DCC_Define>FHIR4;$(DCC_Define)</DCC_Define>
+        <DCC_UnitAlias>FHIR.Tools.AuthMap=FHIR.R4.AuthMap;FHIR.Tools.Constants=FHIR.R4.Constants;FHIR.Tools.Context=FHIR.R4.Context;FHIR.Tools.IndexInfo=FHIR.R4.IndexInfo;FHIR.Tools.Javascript=FHIR.R4.Javascript;FHIR.Tools.ElementModel=FHIR.R4.ElementModel;FHIR.Tools.Narrative=FHIR.R4.Narrative;FHIR.Tools.Operations=FHIR.R4.Operations;FHIR.Tools.Json=FHIR.R4.Json;FHIR.Tools.Turtle=FHIR.R4.Turtle;FHIR.Tools.Xml=FHIR.R4.Xml;FHIR.Tools.PathNode=FHIR.R4.PathNode;FHIR.Tools.Profiles=FHIR.R4.Profiles;FHIR.Tools.Resources=FHIR.R4.Resources;FHIR.Tools.MapUtilities=FHIR.R4.MapUtilities;FHIR.Tools.Tags=FHIR.R4.Tags;FHIRTestWorker=FHIRTestWorker4;FHIR.Tools.Types=FHIR.R4.Types;FHIR.Tools.Utilities=FHIR.R4.Utilities;FHIR.Tools.Validator=FHIR.R4.Validator;FHIR.Tools.OpBase=FHIR.R4.OpBase;FHIR.Tools.PathEngine=FHIR.R4.PathEngine;FHIR.Tools.Narrative2=FHIR.R4.Narrative2;FHIR.Tools.Questionnaire=FHIR.R4.Questionnaire;FHIRBaseX=FHIR.R4.Base;$(DCC_UnitAlias)</DCC_UnitAlias>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Android)'!=''">
         <DCC_UsePackage>DBXSqliteDriver;IndyIPCommon;bindcompdbx;DBXInterBaseDriver;IndyIPServer;IndySystem;tethering;fmxFireDAC;bindcompfmx;ibmonitor;FMXTee;DbxCommonDriver;FmxTeeUI;ibxpress;fmx;xmlrtl;ibxbindings;rtl;DbxClientDriver;RadiantShapesFmx;CustomIPTransport;dbexpress;IndyCore;bindcomp;dsnap;IndyIPClient;dbxcds;bindengine;dsnapxml;dbrtl;IndyProtocols;$(DCC_UsePackage)</DCC_UsePackage>
@@ -110,7 +111,7 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_OSX32)'!=''">
         <DCC_UsePackage>DBXSqliteDriver;IndyIPCommon;bindcompdbx;DBXInterBaseDriver;IndyIPServer;IndySystem;tethering;fmxFireDAC;bindcompfmx;FireDACPgDriver;ibmonitor;inetdb;FMXTee;DbxCommonDriver;FmxTeeUI;ibxpress;fmx;fmxdae;xmlrtl;ibxbindings;fmxobj;rtl;DbxClientDriver;RadiantShapesFmx;CustomIPTransport;dbexpress;IndyCore;bindcomp;dsnap;IndyIPClient;dbxcds;bindengine;DBXMySQLDriver;dsnapxml;FireDACMySQLDriver;dbrtl;IndyProtocols;inetdbxpress;FireDACCommonODBC;fmxase;$(DCC_UsePackage)</DCC_UsePackage>
-        <VerInfo_Keys>CFBundleName=$(MSBuildProjectName);CFBundleDisplayName=$(MSBuildProjectName);CFBundleIdentifier=$(MSBuildProjectName);CFBundleVersion=1.0.0;CFBundlePackageType=APPL;CFBundleSignature=????;CFBundleAllowMixedLocalizations=YES;CFBundleExecutable=$(MSBuildProjectName);NSHighResolutionCapable=true;LSApplicationCategoryType=public.app-category.utilities;NSLocationAlwaysUsageDescription=The reason for accessing the location information of the user;NSLocationWhenInUseUsageDescription=The reason for accessing the location information of the user;NSContactsUsageDescription=The reason for accessing the contacts</VerInfo_Keys>
+        <VerInfo_Keys>CFBundleName=$(MSBuildProjectName);CFBundleDisplayName=$(MSBuildProjectName);CFBundleIdentifier=$(MSBuildProjectName);CFBundleVersion=1.0.0;CFBundlePackageType=APPL;CFBundleSignature=????;CFBundleAllowMixedLocalizations=YES;CFBundleExecutable=$(MSBuildProjectName);NSHighResolutionCapable=true;LSApplicationCategoryType=public.app-category.utilities;NSLocationAlwaysUsageDescription=The reason for accessing the location information of the user;NSLocationWhenInUseUsageDescription=The reason for accessing the location information of the user;NSContactsUsageDescription=The reason for accessing the contacts;CFBundleShortVersionString=1.0.0</VerInfo_Keys>
         <BT_BuildType>Debug</BT_BuildType>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
     </PropertyGroup>
@@ -153,12 +154,16 @@
         <Icon_MainIcon>ScenarioDesktop_Icon.ico</Icon_MainIcon>
         <UWP_DelphiLogo44>C:\HL7\server\fhirserver\Server\FHIRServer3_Icon.ico</UWP_DelphiLogo44>
         <UWP_DelphiLogo150>C:\HL7\server\fhirserver\Server\FHIRServer3_Icon.ico</UWP_DelphiLogo150>
+        <DCC_UnitSearchPath>C:\HL7\server\fhirserver\reference-platform\r4;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_ExeOutput>.\Release\win32</DCC_ExeOutput>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppEnableHighDPI>true</AppEnableHighDPI>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
+        <DCC_UnitSearchPath>C:\HL7\server\fhirserver\reference-platform\r4;C:\HL7\server\fhirserver\Libraries\jcl;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_ExeOutput>.\Release\win64</DCC_ExeOutput>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -169,18 +174,113 @@
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppEnableHighDPI>true</AppEnableHighDPI>
+        <DCC_UnitSearchPath>C:\HL7\server\fhirserver\reference-platform\r4;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <DCC_ExeOutput>.\Release\win32</DCC_ExeOutput>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppEnableHighDPI>true</AppEnableHighDPI>
+        <DCC_UnitSearchPath>C:\HL7\server\fhirserver\reference-platform\r4;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <DCC_ExeOutput>.\Release\win64</DCC_ExeOutput>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
+        <DCCReference Include="..\server\fhirserver\reference-platform\client\FHIR.Tools.Client.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.Support.Strings.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.Support.Math.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.Support.Osx.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.Support.Decimal.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.Support.DateTime.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.Support.Mime.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.Support.Objects.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.Support.Exceptions.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.Support.Generics.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.Support.Stream.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.Support.Filers.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.Support.Collections.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.Support.Binary.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.Support.System.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.Support.Json.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\tools\FHIR.Tools.Parser.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\r4\FHIR.R4.Xml.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\base\FHIR.Base.Parser.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.Support.MXml.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.Support.Turtle.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\base\FHIR.Base.Objects.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\r4\FHIR.R4.Utilities.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.Web.ParseMap.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.Web.Fetcher.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\r4\FHIR.R4.Context.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\r4\FHIR.R4.Types.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\r4\FHIR.R4.Resources.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\tools\FHIR.Tools.Session.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\base\FHIR.Base.Scim.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\r4\FHIR.R4.Constants.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\tools\FHIR.Tools.Security.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\r4\FHIR.R4.Tags.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\base\FHIR.Base.Lang.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\base\FHIR.Base.Xhtml.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\r4\FHIR.R4.Json.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\r4\FHIR.R4.Turtle.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\r4\FHIR.R4.ElementModel.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\r4\FHIR.R4.Profiles.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.Support.Lock.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\r4\FHIR.R4.PathEngine.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\client\FHIR.Client.SmartUtilities.pas"/>
+        <DCCReference Include="C:\markdown\source\MarkdownProcessor.pas"/>
+        <DCCReference Include="C:\markdown\source\MarkdownDaringFireball.pas"/>
+        <DCCReference Include="C:\markdown\source\MarkdownCommonMark.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.CdsHooks.Utilities.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\r4\FHIR.R4.IndexInfo.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\tools\FHIR.Tools.Indexing.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\tools\FHIR.Tools.DiffEngine.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\client\FHIR.Client.Registry.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\client\FHIR.Client.ServerDialogFMX.pas">
+            <Form>EditRegisteredServerForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\server\fhirserver\reference-platform\Support\FHIR.Web.HtmlGen.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\client\FHIR.Client.ClientDialogFMX.pas">
+            <Form>RegisterClientForm</Form>
+        </DCCReference>
+        <DCCReference Include="..\server\fhirserver\reference-platform\client\FHIR.Ui.ComboFMX.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.Support.Signatures.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.Ucum.IFace.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\r4\FHIR.R4.PathNode.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.Debug.Logging.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\r4\FHIR.R4.Questionnaire2.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\r4\FHIR.R4.Base.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\r4\FHIR.R4.ParserBase.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\tools\FHIR.Tools.XhtmlComp.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\r4\FHIR.R4.Parser.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\client\FHIR.Client.Base.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\client\FHIR.Client.HTTP.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\client\FHIR.Client.Threaded.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\r4\FHIR.R4.Client.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.Support.Text.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.Support.Factory.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.Support.Xml.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.Support.Zip.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.Support.WInInet.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.Support.Controllers.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.Support.Certs.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\support\FHIR.Misc.GraphQL.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\base\FHIR.Base.Factory.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\base\FHIR.Base.Validator.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\xversion\FHIR.XVersion.Resources.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\base\FHIR.Base.Narrative.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\base\FHIR.Base.PathEngine.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\r4\FHIR.R4.Common.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\r4\FHIR.R4.Factory.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\r4\FHIR.R4.Narrative.pas"/>
+        <DCCReference Include="..\server\fhirserver\reference-platform\r4\FHIR.R4.Validator.pas"/>
         <DCCReference Include="Umain.pas">
             <Form>Form1</Form>
-            <FormType>fmx</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
@@ -203,6 +303,8 @@
                     <Source Name="MainSource">ScenarioDesktop.dpr</Source>
                 </Source>
                 <Excluded_Packages>
+                    <Excluded_Packages Name="C:\Users\Jose\AppData\Roaming\IntraWeb XIV\bin\dclintraweb_14_D10_2.bpl">IntraWeb 14.0 Design Package for RAD Studio 10.2 Tokyo</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclIntraweb_140_250.bpl">File c:\program files (x86)\embarcadero\studio\19.0\bin\dclIntraweb_140_250.bpl not found</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k250.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dclofficexp250.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                 </Excluded_Packages>
@@ -219,12 +321,25 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="$(BDS)\Redist\iossimulator\libcgunwind.1.0.dylib" Class="DependencyModule">
-                    <Platform Name="iOSSimulator">
+                <DeployFile LocalName="..\server\fhirserver\Server\FHIRServer3_Icon.ico" Configuration="Debug" Class="UWP_DelphiLogo150">
+                    <Platform Name="Win32">
+                        <RemoteDir>Assets\</RemoteDir>
+                        <RemoteName>Logo150x150.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Release\win64\ScenarioDesktop.exe" Configuration="Release" Class="ProjectOutput">
+                    <Platform Name="Win64">
+                        <RemoteName>ScenarioDesktop.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="$(BDS)\Redist\iossimulator\libPCRE.dylib" Class="DependencyModule">
+                    <Platform Name="iOSSimulator">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\Redist\iossimulator\libcgunwind.1.0.dylib" Class="DependencyModule">
                     <Platform Name="iOSSimulator">
                         <Overwrite>true</Overwrite>
                     </Platform>
@@ -234,10 +349,15 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\server\fhirserver\Server\FHIRServer3_Icon.ico" Configuration="Debug" Class="UWP_DelphiLogo150">
-                    <Platform Name="Win32">
-                        <RemoteDir>Assets\</RemoteDir>
-                        <RemoteName>Logo150x150.png</RemoteName>
+                <DeployFile LocalName="Win64\Debug\ScenarioDesktop.rsm" Configuration="Debug" Class="DebugSymbols">
+                    <Platform Name="Win64">
+                        <RemoteName>ScenarioDesktop.rsm</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win64\Debug\ScenarioDesktop.exe" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win64">
+                        <RemoteName>ScenarioDesktop.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

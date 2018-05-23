@@ -1,0 +1,64 @@
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <meta content="text/html;charset=utf-8" http-equiv="Content Type">
+   <title>current-</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="author" content="http://hl7.org/fhir">
+   <link href="fhir.css" rel="stylesheet">
+   <link href="assets/css/bootstrap.css" rel="stylesheet">
+   <link href="assets/css/bootstrap-fhir.css" rel="stylesheet">
+   <link href="assets/css/project.css" rel="stylesheet">
+   <link href="assets/css/pygments-manni.css" rel="stylesheet">
+   <link href="assets/css/jquery-ui.css" rel="stylesheet">
+   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+   <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+   <link rel="shortcut icon" href="assets/ico/favicon.png"><script src="./assets/js/jquery.js"></script><script src="./assets/js/jquery-ui.min.js"></script><script src="./assets/js/bootstrap.min.js"></script><script type="text/javascript">//
+$(window).load(function(){
+$("[data-tab]").on('click', function() {
+    var tab = $(this).attr('data-tab'),
+        target = $(this).attr('href');
+    $('ul.nav a[href="' + tab + '"]').tab('show');
+    $('html, body').animate({
+        scrollTop: $(target).offset().top
+    }, 10);    
+});
+});//</script></head>
+<body>
+   <div id="segment-header" class="segment">
+      <div class="container"><a id="logo" no-external="true" href="http://hl7.org/fhir"><img src="assets/images/fhir-logo.png"></a><div id="hl7-status"></div>
+         <div id="hl7-nav"><a id="hl7-logo" no-external="true" href="http://www.hl7.org"><img height="50" alt="visit the hl7 website" width="42" src="assets/images/hl7-logo.png"></a></div>
+         <div id="hl7-search"><a id="hl7-search-lnk" no-external="true" href="http://hl7.org/fhir/search.cfm"></a></div>
+      </div>
+      <div class="container"></div>
+   </div>
+   <div id="segment-navbar" class="segment">
+      <div id="stripe"></div>
+      <div class="container">
+         <nav class="navbar navbar-inverse">
+            <div class="container"><button data-target=".navbar-inverse-collapse" class="navbar-toggle" data-toggle="collapse" type="button"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand hidden" href="{site.data.fhir.path}index.html">FHIR</a><div class="nav-collapse collapse navbar-inverse-collapse"></div>
+            </div>
+         </nav>
+      </div>
+   </div>
+   <div id="segment-breadcrumb" class="segment">
+      <div class="container"></div>
+   </div>
+   <div id="segment-content" class="segment">
+      <div class="container">
+         <div class="row">
+            <div class="inner-wrapper">
+               <div xmlns="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../../../../schema/fhir-single.xsd">
+                  <div id="segment-content" class="segment">
+                     <div class="container">
+                        <div class="row">
+                           <div class="inner-wrapper">
+                              <div class="col-12">
+                                 <ul class="nav nav-tabs">
+                                    <li class="active"><a data-toggle="tab" href="#sequence">Sequence</a></li>
+                                    <li><a data-toggle="tab" href="#details">Details</a></li>
+                                    <li><a data-toggle="tab" href="#resources">Resources</a></li>
+                                 </ul>
+                                 <div class="tab-content">
+                                    <

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExampleScenario xmlns="http://hl7.org/fhir">
+  <name value="Example Scenario"/>
+  <actor>
+    <actorId value="A1"/>
+    <type value="person"/>
+    <name value="Actor 1"/>
+  </actor>
+</ExampleScenario>

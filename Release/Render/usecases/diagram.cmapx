@@ -1,0 +1,12 @@
+<map id="diagram_map" name="diagram_map">
+<area data-tab="#resources" shape="rect" id="id1" href="#surgery" title="#surgery" alt="" coords="352,1066,397,1082"/>
+<area data-tab="#resources" shape="rect" id="id2" href="#consent" title="#consent" alt="" coords="362,656,410,672"/>
+<area data-tab="#resources" shape="rect" id="id3" href="#consent_task" title="#consent_task" alt="" coords="352,315,452,332"/>
+<area data-tab="#resources" shape="rect" id="id4" href="#iv_lock" title="#iv_lock" alt="" coords="362,912,470,928"/>
+<area data-tab="#resources" shape="rect" id="id5" href="#report_anesthesia" title="#report_anesthesia" alt="" coords="362,1003,506,1019"/>
+<area data-tab="#resources" shape="rect" id="id6" href="#surg_request" title="#surg_request" alt="" coords="176,220,324,236"/>
+<area data-tab="#resources" shape="rect" id="id7" href="#req_anesthesia" title="#req_anesthesia" alt="" coords="352,802,506,819"/>
+<area data-tab="#resources" shape="rect" id="id8" href="#iv_lock_request" title="#iv_lock_request" alt="" coords="352,461,512,478"/>
+<area data-tab="#resources" shape="rect" id="id9" href="#iv_lock_request" title="#iv_lock_request" alt="" coords="352,332,512,348"/>
+<area data-tab="#resources" shape="rect" id="id10" href="#prep_patient" title="#prep_patient" alt="" coords="352,726,513,743"/>
+</map>

@@ -1,0 +1,5 @@
+@startuml
+
+actor "Actor 1" as A1
+
+@enduml
