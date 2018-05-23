@@ -1,9 +1,118 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ExampleScenario xmlns="http://hl7.org/fhir">
-  <name value="Example Scenario"/>
+<?xml version="1.0" encoding="TFslStringBuilder"?>
+<ExampleScenario xmlns="TFslStringBuilder">
+  <id value="TFslStringBuilder"/>
+  <name value="TFslStringBuilder"/>
+  <status value="TFslStringBuilder"/>
+  <experimental value="TFslStringBuilder"/>
+  <date value="TFslStringBuilder"/>
+  <purpose value="TFslStringBuilder"/>
   <actor>
-    <actorId value="A1"/>
-    <type value="person"/>
-    <name value="Actor 1"/>
+    <actorId value="TFslStringBuilder"/>
+    <type value="TFslStringBuilder"/>
+    <name value="TFslStringBuilder"/>
+    <description value="TFslStringBuilder"/>
   </actor>
+  <actor>
+    <actorId value="TFslStringBuilder"/>
+    <type value="TFslStringBuilder"/>
+    <name value="TFslStringBuilder"/>
+    <description value="TFslStringBuilder"/>
+  </actor>
+  <actor>
+    <actorId value="TFslStringBuilder"/>
+    <type value="TFslStringBuilder"/>
+    <name value="TFslStringBuilder"/>
+    <description value="TFslStringBuilder"/>
+  </actor>
+  <instance>
+    <resourceId value="TFslStringBuilder"/>
+    <resourceType value="TFslStringBuilder"/>
+    <name value="TFslStringBuilder"/>
+    <description value="TFslStringBuilder"/>
+    <version>
+      <versionId value="TFslStringBuilder"/>
+      <description value="TFslStringBuilder"/>
+    </version>
+    <version>
+      <versionId value="TFslStringBuilder"/>
+      <description value="TFslStringBuilder"/>
+    </version>
+  </instance>
+  <instance>
+    <resourceId value="TFslStringBuilder"/>
+    <resourceType value="TFslStringBuilder"/>
+    <name value="TFslStringBuilder"/>
+    <description value="TFslStringBuilder"/>
+    <version>
+      <versionId value="TFslStringBuilder"/>
+      <description value="TFslStringBuilder"/>
+    </version>
+    <version>
+      <versionId value="TFslStringBuilder"/>
+      <description value="TFslStringBuilder"/>
+    </version>
+  </instance>
+  <instance>
+    <resourceId value="TFslStringBuilder"/>
+    <resourceType value="TFslStringBuilder"/>
+    <name value="TFslStringBuilder"/>
+    <description value="TFslStringBuilder"/>
+  </instance>
+  <process>
+    <title value="TFslStringBuilder"/>
+    <description value="TFslStringBuilder"/>
+    <preConditions value="TFslStringBuilder"/>
+    <step>
+      <operation>
+        <number value="TFslStringBuilder"/>
+        <type value="TFslStringBuilder"/>
+        <name value="TFslStringBuilder"/>
+        <initiator value="TFslStringBuilder"/>
+        <receiver value="TFslStringBuilder"/>
+        <description value="TFslStringBuilder"/>
+      </operation>
+    </step>
+    <step>
+      <operation>
+        <number value="TFslStringBuilder"/>
+        <type value="TFslStringBuilder"/>
+        <name value="TFslStringBuilder"/>
+        <initiator value="TFslStringBuilder"/>
+        <receiver value="TFslStringBuilder"/>
+        <description value="TFslStringBuilder"/>
+        <request>
+          <resourceId value="TFslStringBuilder"/>
+          <versionId value="TFslStringBuilder"/>
+        </request>
+      </operation>
+    </step>
+    <step>
+      <operation>
+        <number value="TFslStringBuilder"/>
+        <type value="TFslStringBuilder"/>
+        <name value="TFslStringBuilder"/>
+        <initiator value="TFslStringBuilder"/>
+        <receiver value="TFslStringBuilder"/>
+        <description value="TFslStringBuilder"/>
+        <request>
+          <resourceId value="TFslStringBuilder"/>
+          <versionId value="TFslStringBuilder"/>
+        </request>
+      </operation>
+    </step>
+    <step>
+      <operation>
+        <number value="TFslStringBuilder"/>
+        <type value="TFslStringBuilder"/>
+        <name value="TFslStringBuilder"/>
+        <initiator value="TFslStringBuilder"/>
+        <receiver value="TFslStringBuilder"/>
+        <description value="TFslStringBuilder"/>
+        <request>
+          <resourceId value="TFslStringBuilder"/>
+          <versionId value="TFslStringBuilder"/>
+        </request>
+      </operation>
+    </step>
+  </process>
 </ExampleScenario>
